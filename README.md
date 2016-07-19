@@ -13,7 +13,7 @@ v1.0
 ----
 
 [Producton](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t58000000Vpih) and [Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t58000000Vpih)
-- Initial release, only with an API flowtb.FlowFactory.newInstance('myflow', new Map<String, Object>());
+- Initial release, only with an API flowtb.FlowFactory.newInstance
 
 ~~~
 Flow.Interview flow = flowtb.FlowFactory.newInstance('TestA', new Map<String, Object>());
