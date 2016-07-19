@@ -1,0 +1,10 @@
+<apex:page showHeader="true" sidebar="true" standardStylesheets="true">
+	<c:remotesitehelper rssName="mdapi"
+		rssDescription="Add by the Flow Toolbelt package to access the Salesforce Metadata API"
+		pageOverview="Flow Toolbelt tool provides access to Flows from places other beers cannot reach!"
+		pageOverviewLinkURL="https://github.com/afawcett/flowtoolbelt"
+		pageOverviewLinkText="Flow Toolbelt"
+		pageSectionTitle="Flow Toolbelt"
+		pageSectionSubTitle="Provides access to Flows from places other beers cannot reach!"
+		/>
+</apex:page>
