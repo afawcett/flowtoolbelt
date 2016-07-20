@@ -24,6 +24,8 @@ System.debug(flow.getVariableValue('Var'));
 Developers
 ==========
 
+Want to contribute to the code or just take better look? This option is for you... 
+
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce"
        src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
