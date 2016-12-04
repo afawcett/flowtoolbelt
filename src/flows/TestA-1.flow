@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignments>
+        <name>Fred</name>
+        <label>Fred</label>
+        <locationX>150</locationX>
+        <locationY>162</locationY>
+        <assignmentItems>
+            <assignToReference>Var</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>12</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <interviewLabel>TestA {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>TestA</label>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Fred</startElementReference>
+    <variables>
+        <name>Var</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>
