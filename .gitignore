@@ -4,3 +4,5 @@
 *.prefs
 
 salesforce.schema
+
+/Referenced Packages
