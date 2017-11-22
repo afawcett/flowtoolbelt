@@ -1,0 +1,27 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+
+    <aura:attribute name="record" type="Object"/>
+    <aura:attribute name="recordError" type="String"/>   
+    <aura:attribute name="simpleRecord" type="Object"/>
+    <aura:attribute name="metadataRecordName" type="String"/>   
+    <aura:attribute name="metadataRecord" type="Object"/>
+    <aura:attribute name="metadataRecordError" type="String"/>   
+    <aura:handler name="change" value="{!v.recordId}" action="{!c.onRecordIdChange}"/>
+    
+    <force:recordData aura:id="recordLoader"
+        recordId="{!v.recordId}"
+        fields="Name"
+        targetRecord="{!v.record}"
+        targetFields="{!v.simpleRecord}"
+        targetError="{!v.recordError}"
+        recordUpdated="{!c.onRecordUpdated}"/>
+                
+    <c:metadataRecordData aura:id="metadataRecordLoader"
+        recordFullName="{!v.metadataRecordName}"
+        targetRecord="{!v.metadataRecord}"
+        targetFields="DeveloperName, Label, Flow__c"
+        recordUpdated="{!c.onMetadataRecordUpdated}"
+        readOnly="true"/>
+        
+    {!v.body}   
+</aura:component>
