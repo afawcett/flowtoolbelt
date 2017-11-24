@@ -1,4 +1,4 @@
-<apex:page controller="FlowFactoryController" showHeader="true" sidebar="true">
+<apex:page controller="FlowFactoryController" lightningStylesheets="true" showHeader="true" sidebar="true">
 	<apex:includeScript value="{!URLFOR($Resource.jszip, '/jszip.js')}"/>
 	<apex:includeScript value="{!URLFOR($Resource.jszip, '/jszip-load.js')}"/>
 	<apex:includeScript value="{!URLFOR($Resource.jszip, '/jszip-deflate.js')}"/>
