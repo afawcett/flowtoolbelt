@@ -30,9 +30,13 @@ global class FlowFactory {
      * Dynamic API leverages the generated FlowFactory if it exists
      **/
     global static Flow.Interview newInstance(String name, Map<String, Object> params) {
-        // TODO: Error handling for when the user has not generated the factory
         Type flowFactoryType = Type.forName('', 'flowtb_FlowFactory');
+        if(flowFactoryType==null) {
+            throw new FlowFactoryException('Use of Dynamic Autolaunched Flows from Apex requires configuration via the Flow Factory tab');
+        }
         IFlowFactory flowFactoryImpl = (IFlowFactory) flowFactoryType.newInstance();
         return flowFactoryImpl.newInstance(name, params);
     }
+    
+    public class FlowFactoryException extends Exception {}
 }
