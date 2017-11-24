@@ -33,6 +33,8 @@ public with sharing class FlowController {
         List<FlowOutputVariable> outputVariables = new List<FlowOutputVariable>();
         Set<String> outputVarNames = new Set<String>(flowOutputParamNames.split('[\r\n]+'));
         outputVarNames.add('flowtb_event');        
+        outputVarNames.add('flowtb_param_title');        
+        outputVarNames.add('flowtb_param_message');                
         outputVarNames.add('flowtb_runFlow');        
         outputVarNames.add('flowtb_minimize_utility');
         outputVarNames.add('flowtb_open_utility');
