@@ -61,7 +61,7 @@
             helper.runFlow(
                 component,
                 component.get('v.metadataRecord.flowtb__Flow__c'), 
-                component.get('v.metadataRecord.flowtb__IsAutolaunched__c'),
+                component.get('v.metadataRecord.flowtb__IsAutoLaunched__c'),
                 component.get('v.metadataRecord.flowtb__AutoLaunchedOutputVariables__c'));
         }
         // Lets the reset method in the helper know its safe to reset the component if called
