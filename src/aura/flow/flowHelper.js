@@ -1,12 +1,11 @@
 ({
     runFlow : function(component, flow, isAutoLaunched, flowOutputParamNames) {
-        component.set("v.body", []);
         if(isAutoLaunched) {
             var helper = this;
             var action = component.get("c.runFlow");
             action.setParams({ 
                 flow : flow,
-                flowOutputParamNames : flowOutputParamNames,  
+                flowOutputParamNames : flowOutputParamNames == null ? '' : flowOutputParamNames,  
                 record : component.get('v.simpleRecord') });  
             action.setCallback(this, function(response) {
                 var state = response.getState();
@@ -43,6 +42,9 @@
                 utilityAPI.minimizeUtility({});
             } else if (outputVar.name === 'flowtb_open_utility') {
                 utilityAPI.getUtilityInfo().then(function(response) {
+                    if(component.get('v.minimizeUtility') == null) {
+                        component.set('v.minimizeUtility', response.utilityVisible ? false : true);
+                    }
                     if (!response.utilityVisible) {
                         utilityAPI.openUtility();
                     }
@@ -60,5 +62,18 @@
         if(flowToRun!=null) {
             this.runFlow(component, flowToRun);
         }		
+	},
+	reset : function(component, flow) {
+        if(component.get('v.loaded')) {
+            component.set("v.body", [ ]);
+            component.find("utilitybar").setUtilityHighlighted({ highlighted : false });
+            if(flow == null || component.get('v.currentFlow') != flow) {
+                if(component.get('v.minimizeUtility') == true) {            
+                    component.find("utilitybar").minimizeUtility({});
+                }
+                component.set('v.minimizeUtility', null);
+            }
+            component.set('v.currentFlow', flow);
+        }	
 	}
 })

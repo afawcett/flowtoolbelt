@@ -1,11 +1,9 @@
 ({
 	onRecordIdChange : function(component, event, helper) {
-        if(component.get('v.loaded')) {
-            component.set("v.body", [ ]);
-            component.find("utilitybar").setUtilityHighlighted({ highlighted : false });                
-        }
 	    if(component.get('v.recordId')!=null) {
 	        component.find("recordLoader").reloadRecord();
+	    } else {
+	        helper.reset(component, null);
 	    }
 	},
     onRecordUpdated : function(component, event, helper) {
@@ -23,6 +21,7 @@
         } else if(changeType == 'LOADED') {
             component.set('v.metadataRecordError', null);
             console.log('Metadata Record Flow ' + component.get('v.metadataRecord.flowtb__Flow__c') );
+            helper.reset(component, component.get('v.metadataRecord.flowtb__Flow__c'));            
             helper.runFlow(
                 component,
                 component.get('v.metadataRecord.flowtb__Flow__c'), 

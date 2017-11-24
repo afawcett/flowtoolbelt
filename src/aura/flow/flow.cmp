@@ -1,6 +1,8 @@
 <aura:component controller="FlowController" implements="flexipage:availableForAllPageTypes,force:hasRecordId">
 
     <aura:attribute name="loaded" type="Boolean" />
+    <aura:attribute name="minimizeUtility" type="Boolean" />
+    <aura:attribute name="currentFlow" type="String" />
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="recordError" type="String"/>   
     <aura:attribute name="simpleRecord" type="Object"/>
