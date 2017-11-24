@@ -29,11 +29,16 @@ public with sharing class FlowController {
     @AuraEnabled
     public static List<FlowOutputVariable> runFlow(String flow, String flowOutputParamNames, SObject record) {
         try {
-	        Flow.Interview flowInterview = FlowFactory.newInstance(flow, new Map<String, Object> { 'flowtb_record' => record });
+            
+            // Run the Auto Launched flow
+	        Flow.Interview flowInterview = 
+	           FlowFactory.newInstance(flow, new Map<String, Object> { 'flowtb_record' => record });
 	        if(flowInterview==null) {
 	            throw new AuraHandledException('Flow ' + flow + ' not found.');
 	        }
 	        flowInterview.start();
+	        
+	        // Apex API does not allow enumeration of output variables, so the following uses a known list plus custom one
 	        List<FlowOutputVariable> outputVariables = new List<FlowOutputVariable>();
 	        Set<String> outputVarNames = new Set<String>(flowOutputParamNames.split('[\r\n]+'));
 	        outputVarNames.add('flowtb_event');        
