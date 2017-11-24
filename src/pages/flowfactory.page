@@ -9,6 +9,10 @@
 		<apex:outputPanel rendered="{!MetadataConnectionError==true}">
 			<apex:outputLink value="{!$Page.welcome}?showHeader=1">Return to the Welcome page</apex:outputLink>
 		</apex:outputPanel>
+        <apex:outputPanel rendered="{!ISNULL(AsyncResult)}">
+            <input type="button" onclick="generateZip();" value="{!IF(Deployed, 'Remove', 'Deploy')}" class="btn"/>
+        </apex:outputPanel>
+        <div>&nbsp;</div>
 		<apex:outputPanel rendered="{!MetadataConnectionError==false}">		
 			<apex:pageBlock >
 				<apex:pageBlockSection >
@@ -30,9 +34,6 @@
 				<c:zipEntry path="classes/{!FactoryTestName}.cls" data="{!FactoryTestCode}" rendered="{!NOT(Deployed)}"/>
 				<c:zipEntry path="classes/{!FactoryTestName}.cls-meta.xml" data="{!FactoryTestCodeMetadata}" rendered="{!NOT(Deployed)}"/>
 			</c:zip>
-			<apex:outputPanel rendered="{!ISNULL(AsyncResult)}">
-				<input type="button" onclick="generateZip();" value="{!IF(Deployed, 'Remove', 'Deploy')}" class="btn"/>
-			</apex:outputPanel>
 		</apex:outputPanel>
  	</apex:form>	
 </apex:page>
