@@ -28,26 +28,37 @@ public with sharing class FlowController {
 
     @AuraEnabled
     public static List<FlowOutputVariable> runFlow(String flow, String flowOutputParamNames, SObject record) {
-        Flow.Interview flowInterview = FlowFactory.newInstance(flow, new Map<String, Object> { 'flowtb_record' => record });
-        flowInterview.start();
-        List<FlowOutputVariable> outputVariables = new List<FlowOutputVariable>();
-        Set<String> outputVarNames = new Set<String>(flowOutputParamNames.split('[\r\n]+'));
-        outputVarNames.add('flowtb_event');        
-        outputVarNames.add('flowtb_param_title');        
-        outputVarNames.add('flowtb_param_message');                
-        outputVarNames.add('flowtb_runFlow');        
-        outputVarNames.add('flowtb_minimize_utility');
-        outputVarNames.add('flowtb_open_utility');
-        outputVarNames.add('flowtb_utility_highlighted');        
-        for(String paramName : outputVarNames) {
-	        FlowOutputVariable outputParam = new FlowOutputVariable();
-	        outputParam.name = paramName;
-	        outputParam.value = flowInterview.getVariableValue(paramName);
-	        if(outputParam.value!=null) {
-                outputVariables.add(outputParam);            	            
+        try {
+	        Flow.Interview flowInterview = FlowFactory.newInstance(flow, new Map<String, Object> { 'flowtb_record' => record });
+	        if(flowInterview==null) {
+	            throw new AuraHandledException('Flow ' + flow + ' not found.');
 	        }
+	        flowInterview.start();
+	        List<FlowOutputVariable> outputVariables = new List<FlowOutputVariable>();
+	        Set<String> outputVarNames = new Set<String>(flowOutputParamNames.split('[\r\n]+'));
+	        outputVarNames.add('flowtb_event');        
+	        outputVarNames.add('flowtb_param_title');        
+	        outputVarNames.add('flowtb_param_message');                
+	        outputVarNames.add('flowtb_runFlow');        
+	        outputVarNames.add('flowtb_minimize_utility');
+	        outputVarNames.add('flowtb_open_utility');
+	        outputVarNames.add('flowtb_utility_highlighted');        
+	        for(String paramName : outputVarNames) {
+		        FlowOutputVariable outputParam = new FlowOutputVariable();
+		        outputParam.name = paramName;
+		        outputParam.value = flowInterview.getVariableValue(paramName);
+		        if(outputParam.value!=null) {
+	                outputVariables.add(outputParam);            	            
+		        }
+	        }
+            return outputVariables;
         }
-        return outputVariables;
+        catch (AuraHandledException e) {
+            throw e;
+        }
+        catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());            
+        }
     }   
     
     public class FlowOutputVariable {

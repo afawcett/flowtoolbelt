@@ -7,7 +7,6 @@
 	    }
 	},
     onRecordUpdated : function(component, event, helper) {
-        console.log('Record ' + component.get('v.simpleRecord.Name') + ' (' + component.get('v.record.apiName') + ')' );        
         component.set('v.metadataRecordName', 'DynamicFlowComponent.' + component.get('v.record.apiName'));
         component.find("metadataRecordLoader").reloadRecord();
     },	
@@ -20,7 +19,6 @@
             component.set('v.metadataRecordError', result.fullName ? result.message : result);
         } else if(changeType == 'LOADED') {
             component.set('v.metadataRecordError', null);
-            console.log('Metadata Record Flow ' + component.get('v.metadataRecord.flowtb__Flow__c') );
             helper.reset(component, component.get('v.metadataRecord.flowtb__Flow__c'));            
             helper.runFlow(
                 component,
@@ -31,12 +29,13 @@
         component.set('v.loaded', true);    
     },
     onFlowStatusChange : function(component, event, helper) {
-        console.log('Flow status change ' + event.getParam("status"));
         if(event.getParam("status") === "FINISHED" || event.getParam("status") == 'FINISHED_SCREEN') {
             var outputVariables = event.getParam("outputVariables");
             if(outputVariables!=null) {
-                helper.handleFlowOutput(component, outputVariables);
+                helper.handleFlowOutput(component, event.getParam('flowTitle'), outputVariables);
             }
+        } else if (event.getParam("status") === "Error") {
+            helper.error("Flow Component failed to load the Flow");
         }
     }
 })

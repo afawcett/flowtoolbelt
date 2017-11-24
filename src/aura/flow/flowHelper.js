@@ -1,7 +1,7 @@
 ({
     runFlow : function(component, flow, isAutoLaunched, flowOutputParamNames) {
+        var helper = this;
         if(isAutoLaunched) {
-            var helper = this;
             var action = component.get("c.runFlow");
             action.setParams({ 
                 flow : flow,
@@ -11,19 +11,25 @@
                 var state = response.getState();
                 if (state === "SUCCESS") {
                     var outputVariables = response.getReturnValue();
-                    helper.handleFlowOutput(component, outputVariables);
+                    helper.handleFlowOutput(component, flow, outputVariables);
+                } else {
+                    helper.error(response.getError()[0].message);
                 }});
             $A.enqueueAction(action);                
         } else {
             $A.createComponent("lightning:flow", { 'onstatuschange' : component.getReference('c.onFlowStatusChange') }, 
                 function(newFlow, status, errorMessage) {
-                    component.set("v.body", [ newFlow ]);
-                    newFlow.startFlow(flow, [ 
-                       { name: 'flowtb_record', type : 'SObject', value : component.get('v.simpleRecord') } ] );
+                    if (status === "SUCCESS") {
+                        component.set("v.body", [ newFlow ]);
+                        newFlow.startFlow(flow, [ 
+                           { name: 'flowtb_record', type : 'SObject', value : component.get('v.simpleRecord') } ] );
+                    } else {
+                        helper.error('Failed to create lightning:flow component ' + errorMessage);
+                    }
                 });                     
         }    
     },
-	handleFlowOutput : function(component, outputVariables) {
+	handleFlowOutput : function(component, flow, outputVariables) {
 	    var utilityAPI = component.find("utilitybar");
 	    var flowToRun = null;
         var eventToFire = null;
@@ -49,11 +55,13 @@
                         utilityAPI.openUtility();
                     }
                 }).catch(function(error) {
-                    console.log(error);
+                    this.error(error);
                 });
             } else if (outputVar.name === 'flowtb_utility_highlighted') {
                 utilityAPI.setUtilityHighlighted({ highlighted : outputVar.value });
-            }                
+            } else {
+                this.error('Unexpected variable ' + outputVar.name + ' returned from flow ' + flow);            
+            }              
         }
         if(eventToFire!=null) {
             eventToFire.setParams(eventParams);
@@ -75,5 +83,10 @@
             }
             component.set('v.currentFlow', flow);
         }	
+	},
+	error : function(error) {
+	    var toastEvent = $A.get("e.force:showToast");
+        toastEvent.setParams({ "title" : "Error", "type" : "error", "message": error });
+        toastEvent.fire();	    
 	}
 })
