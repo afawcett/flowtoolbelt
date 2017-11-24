@@ -18,28 +18,11 @@
         } else if(changeType == 'LOADED') {
             component.set('v.metadataRecordError', null);
             console.log('Metadata Record Flow ' + component.get('v.metadataRecord.flowtb__Flow__c') );
-            if(component.get('v.metadataRecord.flowtb__IsAutolaunched__c')) {
-                var action = component.get("c.runFlow");
-                action.setParams({ 
-                    flow : component.get('v.metadataRecord.flowtb__Flow__c'),
-                    flowOutputParamNames : component.get('v.metadataRecord.flowtb__AutoLaunchedOutputVariables__c'),  
-                    record : component.get('v.simpleRecord') });  
-                action.setCallback(this, function(response) {
-                    var state = response.getState();
-                    if (state === "SUCCESS") {
-                        var outputVariables = response.getReturnValue();
-                        helper.handleFlowOutput(component, outputVariables);
-                    }});
-                $A.enqueueAction(action);                
-            } else {
-                $A.createComponent("lightning:flow", { 'onstatuschange' : component.getReference('c.onFlowStatusChange') }, 
-                    function(newFlow, status, errorMessage) {
-                        component.set("v.body", [ newFlow ]);
-                        newFlow.startFlow(
-                            component.get('v.metadataRecord.flowtb__Flow__c'),
-                            [ { name: 'flowtb_record', type : 'SObject', value : component.get('v.simpleRecord') } ] );
-                    });                     
-            }
+            helper.runFlow(
+                component,
+                component.get('v.metadataRecord.flowtb__Flow__c'), 
+                component.get('v.metadataRecord.flowtb__IsAutolaunched__c'),
+                component.get('v.metadataRecord.flowtb__AutoLaunchedOutputVariables__c'));
         }    
     },
     onFlowStatusChange : function(component, event, helper) {
