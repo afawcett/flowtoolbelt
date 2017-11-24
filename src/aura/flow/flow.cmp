@@ -1,4 +1,4 @@
-<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+<aura:component controller="FlowController" implements="flexipage:availableForAllPageTypes,force:hasRecordId">
 
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="recordError" type="String"/>   
@@ -19,7 +19,7 @@
     <c:metadataRecordData aura:id="metadataRecordLoader"
         recordFullName="{!v.metadataRecordName}"
         targetRecord="{!v.metadataRecord}"
-        targetFields="DeveloperName, Label, Flow__c"
+        targetFields="DeveloperName, Label, Flow__c, IsAutolaunched__c, AutoLaunchedOutputVariables__c"
         recordUpdated="{!c.onMetadataRecordUpdated}"
         readOnly="true"/>
         
