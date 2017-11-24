@@ -10,7 +10,7 @@
     
     <force:recordData aura:id="recordLoader"
         recordId="{!v.recordId}"
-        fields="Name"
+        layoutType="FULL"
         targetRecord="{!v.record}"
         targetFields="{!v.simpleRecord}"
         targetError="{!v.recordError}"
@@ -23,5 +23,6 @@
         recordUpdated="{!c.onMetadataRecordUpdated}"
         readOnly="true"/>
         
-    {!v.body}   
+    {!v.body}
+    
 </aura:component>
