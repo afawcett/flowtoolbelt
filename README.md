@@ -1,7 +1,5 @@
 # Flow Toolbelt
 
-**WIP:** Dynamically call Flows at runtime to do more things with them from more places!
-
 Read this [blog](https://andyinthecloud.com/2016/07/19/introducing-the-flow-factory/) for further documentation and background.
 
 Packages
