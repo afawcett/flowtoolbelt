@@ -1,5 +1,6 @@
 <aura:component controller="FlowController" implements="flexipage:availableForAllPageTypes,force:hasRecordId">
 
+    <aura:attribute name="loaded" type="Boolean" />
     <aura:attribute name="record" type="Object"/>
     <aura:attribute name="recordError" type="String"/>   
     <aura:attribute name="simpleRecord" type="Object"/>
@@ -7,6 +8,8 @@
     <aura:attribute name="metadataRecord" type="Object"/>
     <aura:attribute name="metadataRecordError" type="String"/>   
     <aura:handler name="change" value="{!v.recordId}" action="{!c.onRecordIdChange}"/>
+    
+    <lightning:utilityBarAPI aura:id="utilitybar"/>
     
     <force:recordData aura:id="recordLoader"
         recordId="{!v.recordId}"

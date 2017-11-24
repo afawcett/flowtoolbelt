@@ -1,7 +1,12 @@
 ({
 	onRecordIdChange : function(component, event, helper) {
-	    component.set("v.body", [ ]);
-	    component.find("recordLoader").reloadRecord();
+        if(component.get('v.loaded')) {
+            component.set("v.body", [ ]);
+            component.find("utilitybar").setUtilityHighlighted({ highlighted : false });                
+        }
+	    if(component.get('v.recordId')!=null) {
+	        component.find("recordLoader").reloadRecord();
+	    }
 	},
     onRecordUpdated : function(component, event, helper) {
         console.log('Record ' + component.get('v.simpleRecord.Name') + ' (' + component.get('v.record.apiName') + ')' );        
@@ -23,7 +28,8 @@
                 component.get('v.metadataRecord.flowtb__Flow__c'), 
                 component.get('v.metadataRecord.flowtb__IsAutolaunched__c'),
                 component.get('v.metadataRecord.flowtb__AutoLaunchedOutputVariables__c'));
-        }    
+        }
+        component.set('v.loaded', true);    
     },
     onFlowStatusChange : function(component, event, helper) {
         console.log('Flow status change ' + event.getParam("status"));

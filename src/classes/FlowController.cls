@@ -31,11 +31,19 @@ public with sharing class FlowController {
         Flow.Interview flowInterview = FlowFactory.newInstance(flow, new Map<String, Object> { 'flowtb_record' => record });
         flowInterview.start();
         List<FlowOutputVariable> outputVariables = new List<FlowOutputVariable>();
-        for(String paramName : flowOutputParamNames.split('[\r\n]+')) {
+        Set<String> outputVarNames = new Set<String>(flowOutputParamNames.split('[\r\n]+'));
+        outputVarNames.add('flowtb_event');        
+        outputVarNames.add('flowtb_runFlow');        
+        outputVarNames.add('flowtb_minimize_utility');
+        outputVarNames.add('flowtb_open_utility');
+        outputVarNames.add('flowtb_utility_highlighted');        
+        for(String paramName : outputVarNames) {
 	        FlowOutputVariable outputParam = new FlowOutputVariable();
 	        outputParam.name = paramName;
 	        outputParam.value = flowInterview.getVariableValue(paramName);
-	        outputVariables.add(outputParam);            
+	        if(outputParam.value!=null) {
+                outputVariables.add(outputParam);            	            
+	        }
         }
         return outputVariables;
     }   
