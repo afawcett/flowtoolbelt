@@ -26,7 +26,6 @@
     },
 	handleFlowOutput : function(component, outputVariables) {
 	    var utilityAPI = component.find("utilitybar");
-	    var utilityInfo = utilityAPI.getUtilityInfo();	
 	    var flowToRun = null;
         var eventToFire = null;
         var eventParams = {};
@@ -43,9 +42,13 @@
             } else if (outputVar.name === 'flowtb_minimize_utility') {
                 utilityAPI.minimizeUtility({});
             } else if (outputVar.name === 'flowtb_open_utility') {
-                if(!utilityInfo.utilityVisible) {
-                    utilityAPI.openUtility({});
-                }
+                utilityAPI.getUtilityInfo().then(function(response) {
+                    if (!response.utilityVisible) {
+                        utilityAPI.openUtility();
+                    }
+                }).catch(function(error) {
+                    console.log(error);
+                });
             } else if (outputVar.name === 'flowtb_utility_highlighted') {
                 utilityAPI.setUtilityHighlighted({ highlighted : outputVar.value });
             }                
