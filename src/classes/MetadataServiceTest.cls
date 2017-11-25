@@ -33,25 +33,25 @@ private class MetadataServiceTest
     /**
      * Dummy Metadata API web service mock class (see MetadataCreateJobTest.cls for a better example)
      **/
-	private class WebServiceMockImpl implements WebServiceMock 
-	{
-		public void doInvoke(
-			Object stub, Object request, Map<String, Object> response,
-			String endpoint, String soapAction, String requestName,
-			String responseNS, String responseName, String responseType) 
-		{
-			if(request instanceof MetadataService.retrieve_element)
-				response.put('response_x', new MetadataService.retrieveResponse_element());
-			else if(request instanceof MetadataService.checkDeployStatus_element)
-				response.put('response_x', new MetadataService.checkDeployStatusResponse_element());
-			else if(request instanceof MetadataService.listMetadata_element)
-				response.put('response_x', new MetadataService.listMetadataResponse_element());
-			else if(request instanceof MetadataService.checkRetrieveStatus_element)
-				response.put('response_x', new MetadataService.checkRetrieveStatusResponse_element());
-			else if(request instanceof MetadataService.describeMetadata_element)
-				response.put('response_x', new MetadataService.describeMetadataResponse_element());
-			else if(request instanceof MetadataService.deploy_element)
-				response.put('response_x', new MetadataService.deployResponse_element());
+    private class WebServiceMockImpl implements WebServiceMock 
+    {
+        public void doInvoke(
+            Object stub, Object request, Map<String, Object> response,
+            String endpoint, String soapAction, String requestName,
+            String responseNS, String responseName, String responseType) 
+        {
+            if(request instanceof MetadataService.retrieve_element)
+                response.put('response_x', new MetadataService.retrieveResponse_element());
+            else if(request instanceof MetadataService.checkDeployStatus_element)
+                response.put('response_x', new MetadataService.checkDeployStatusResponse_element());
+            else if(request instanceof MetadataService.listMetadata_element)
+                response.put('response_x', new MetadataService.listMetadataResponse_element());
+            else if(request instanceof MetadataService.checkRetrieveStatus_element)
+                response.put('response_x', new MetadataService.checkRetrieveStatusResponse_element());
+            else if(request instanceof MetadataService.describeMetadata_element)
+                response.put('response_x', new MetadataService.describeMetadataResponse_element());
+            else if(request instanceof MetadataService.deploy_element)
+                response.put('response_x', new MetadataService.deployResponse_element());
             else if(request instanceof MetadataService.updateMetadata_element)
                 response.put('response_x', new MetadataService.updateMetadataResponse_element());
             else if(request instanceof MetadataService.renameMetadata_element)
@@ -70,29 +70,32 @@ private class MetadataServiceTest
                 response.put('response_x', new MetadataService.describeValueTypeResponse_element());
             else if(request instanceof MetadataService.checkRetrieveStatus_element)
                 response.put('response_x', new MetadataService.checkRetrieveStatusResponse_element());
-			return;
-		}
-	}    
-		
-	@IsTest
-	private static void coverGeneratedCodeCRUDOperations()
-	{	
-    	// Null Web Service mock implementation
+            return;
+        }
+    }    
+        
+    @IsTest
+    private static void coverGeneratedCodeCRUDOperations()
+    {   
+        // Null Web Service mock implementation
         System.Test.setMock(WebServiceMock.class, new WebServiceMockImpl());
         // Only required to workaround a current code coverage bug in the platform
         MetadataService metaDataService = new MetadataService();
-        // Invoke operations         
+        // Invoke operations     
+        Test.startTest();    
         MetadataService.MetadataPort metaDataPort = new MetadataService.MetadataPort();
-	}
-	
-	@IsTest
+        Test.stopTest();
+    }
+    
+    @IsTest
     private static void coverGeneratedCodeFileBasedOperations1()
-    {    	
-    	// Null Web Service mock implementation
+    {       
+        // Null Web Service mock implementation
         System.Test.setMock(WebServiceMock.class, new WebServiceMockImpl());
         // Only required to workaround a current code coverage bug in the platform
         MetadataService metaDataService = new MetadataService();
-        // Invoke operations         
+        // Invoke operations    
+        Test.startTest();     
         MetadataService.MetadataPort metaDataPort = new MetadataService.MetadataPort();
         metaDataPort.retrieve(null);
         metaDataPort.checkDeployStatus(null, false);
@@ -103,6 +106,7 @@ private class MetadataServiceTest
         metaDataPort.updateMetadata(null);
         metaDataPort.renameMetadata(null, null, null);
         metaDataPort.cancelDeploy(null);
+        Test.stopTest();
     }
 
     @IsTest
@@ -112,7 +116,8 @@ private class MetadataServiceTest
         System.Test.setMock(WebServiceMock.class, new WebServiceMockImpl());
         // Only required to workaround a current code coverage bug in the platform
         MetadataService metaDataService = new MetadataService();
-        // Invoke operations         
+        // Invoke operations     
+        Test.startTest();    
         MetadataService.MetadataPort metaDataPort = new MetadataService.MetadataPort();
         metaDataPort.deleteMetadata(null, null);
         metaDataPort.upsertMetadata(null);
@@ -120,12 +125,14 @@ private class MetadataServiceTest
         metaDataPort.deployRecentValidation(null);
         metaDataPort.describeValueType(null);
         metaDataPort.checkRetrieveStatus(null, null);
+        Test.stopTest();
     }
         
-	@IsTest
+    @IsTest
     private static void coverGeneratedCodeTypes()
-    {    	       
+    {              
         // Reference types
+        Test.startTest();
         new MetadataService();
         new MetadataService.listMetadataResponse_element();
         new MetadataService.WorkflowRule();
@@ -233,7 +240,7 @@ private class MetadataServiceTest
         new MetadataService.ListMetadataQuery();
         new MetadataService.FlowConnector();
         new MetadataService.CustomApplicationComponent();
-		new MetadataService.FlowRecordLookup();
+        new MetadataService.FlowRecordLookup();
         new MetadataService.FieldSet();
         new MetadataService.ProfileApexClassAccess();
         new MetadataService.DebuggingHeader_element();
@@ -426,52 +433,52 @@ private class MetadataServiceTest
         new MetadataService.InstalledPackage();
         new MetadataService.PushNotification();
         new MetadataService.LiveChatAgentConfig();
-		new MetadataService.AdjustmentsSettings();                               
-		new MetadataService.ForecastingSettings();                                
-		new MetadataService.QuickActionListItem();           
-		new MetadataService.Branding();          
-		new MetadataService.QuickActionLayoutItem();                     
-		new MetadataService.OpportunityListFieldsSelectedSettings();        
-		new MetadataService.ApprovalStepRejectBehavior();
-		new MetadataService.FolderShare();   
-		new MetadataService.ApprovalEntryCriteria();                                
-		new MetadataService.ProductSettings();                                
-		new MetadataService.OpportunitySettings();              
-		new MetadataService.LiveChatDeployment();                                
-		new MetadataService.QuickActionLayoutColumn();           
-		new MetadataService.GlobalQuickActionTranslation();      
-		new MetadataService.ApprovalStepApprover();                                
-		new MetadataService.QuoteSettings();         
-		new MetadataService.LiveChatButton();                                
-		new MetadataService.Network();
-		new MetadataService.LiveChatDeploymentDomainWhitelist();
-		new MetadataService.KnowledgeLanguageSettings();
-		new MetadataService.Approver();
-		new MetadataService.SamlSsoConfig();
-		new MetadataService.ApprovalSubmitter();
-		new MetadataService.KeyboardShortcuts();
-		new MetadataService.ApprovalStep();
-		new MetadataService.AgentConfigAssignments();
-		new MetadataService.QuickAction();
-		new MetadataService.DefaultShortcut();
-		new MetadataService.ApprovalAction();
-		new MetadataService.KnowledgeLanguage();
-		new MetadataService.LiveChatButtonSkills();
-		new MetadataService.SkillUserAssignments();
-		new MetadataService.NextAutomatedApprover();
-		new MetadataService.ApprovalProcess();
-		new MetadataService.QuickActionLayout();
-		new MetadataService.PushNotifications();
-		new MetadataService.ForecastRangeSettings();
-		new MetadataService.IdeaReputationLevel();
-		new MetadataService.NetworkTabSet();
-		new MetadataService.SkillProfileAssignments();
-		new MetadataService.CustomShortcut();
-		new MetadataService.PagesToOpen();
-		new MetadataService.AgentConfigUserAssignments();
-		new MetadataService.NetworkMemberGroup();
-		new MetadataService.FindSimilarOppFilter();
-		new MetadataService.QuickActionTranslation();				
+        new MetadataService.AdjustmentsSettings();                               
+        new MetadataService.ForecastingSettings();                                
+        new MetadataService.QuickActionListItem();           
+        new MetadataService.Branding();          
+        new MetadataService.QuickActionLayoutItem();                     
+        new MetadataService.OpportunityListFieldsSelectedSettings();        
+        new MetadataService.ApprovalStepRejectBehavior();
+        new MetadataService.FolderShare();   
+        new MetadataService.ApprovalEntryCriteria();                                
+        new MetadataService.ProductSettings();                                
+        new MetadataService.OpportunitySettings();              
+        new MetadataService.LiveChatDeployment();                                
+        new MetadataService.QuickActionLayoutColumn();           
+        new MetadataService.GlobalQuickActionTranslation();      
+        new MetadataService.ApprovalStepApprover();                                
+        new MetadataService.QuoteSettings();         
+        new MetadataService.LiveChatButton();                                
+        new MetadataService.Network();
+        new MetadataService.LiveChatDeploymentDomainWhitelist();
+        new MetadataService.KnowledgeLanguageSettings();
+        new MetadataService.Approver();
+        new MetadataService.SamlSsoConfig();
+        new MetadataService.ApprovalSubmitter();
+        new MetadataService.KeyboardShortcuts();
+        new MetadataService.ApprovalStep();
+        new MetadataService.AgentConfigAssignments();
+        new MetadataService.QuickAction();
+        new MetadataService.DefaultShortcut();
+        new MetadataService.ApprovalAction();
+        new MetadataService.KnowledgeLanguage();
+        new MetadataService.LiveChatButtonSkills();
+        new MetadataService.SkillUserAssignments();
+        new MetadataService.NextAutomatedApprover();
+        new MetadataService.ApprovalProcess();
+        new MetadataService.QuickActionLayout();
+        new MetadataService.PushNotifications();
+        new MetadataService.ForecastRangeSettings();
+        new MetadataService.IdeaReputationLevel();
+        new MetadataService.NetworkTabSet();
+        new MetadataService.SkillProfileAssignments();
+        new MetadataService.CustomShortcut();
+        new MetadataService.PagesToOpen();
+        new MetadataService.AgentConfigUserAssignments();
+        new MetadataService.NetworkMemberGroup();
+        new MetadataService.FindSimilarOppFilter();
+        new MetadataService.QuickActionTranslation();               
         new MetadataService.WorkflowFlowActionParameter();
         new MetadataService.ConnectedAppOauthConfig();
         new MetadataService.FlowLoop();
@@ -927,13 +934,65 @@ private class MetadataServiceTest
         new MetaDataService.WaveLens();
         new MetaDataService.OrgPreferenceSettings();
         new MetaDataService.SearchSettings();
-        new MetadataService.GlobalPicklist();
         new MetadataService.GlobalPicklistValue();
         new MetadataService.PicklistValue();
+        new MetadataService.KeywordList();
+        new MetadataService.EmbeddedServiceLiveAgent();
+        new MetadataService.GlobalValueSet();
+        new MetadataService.OrganizationSettingsDetail();
+        new MetadataService.DuplicateRuleFilterItem();
+        new MetadataService.ContentAsset();
+        new MetadataService.EmbeddedServiceConfig();
+        new MetadataService.DuplicateRule();
+        new MetadataService.ValueSetValuesDefinition();
+        new MetadataService.ObjectSearchSetting();
+        new MetadataService.Keyword();
+        new MetadataService.OpportunityListFieldsLabelMapping();
+        new MetadataService.NavigationMenuItem();
+        new MetadataService.DuplicateRuleFilter();
+        new MetadataService.SearchSettingsByObject();
+        new MetadataService.CustomExperienceBranding();
+        new MetadataService.EventTypeParameter();
+        new MetadataService.DuplicateRuleMatchRule();
+        new MetadataService.FlowScreenRuleAction();
+        new MetadataService.KnowledgeCaseFieldsSettings();
+        new MetadataService.ObjectMappingField();
+        new MetadataService.ValueSet();
+        new MetadataService.ProfileActionOverride();
+        new MetadataService.ContentAssetRelationships();
+        new MetadataService.ContentAssetVersions();
+        new MetadataService.ExternalServiceRegistration();
+        new MetadataService.CustomExperience();
+        new MetadataService.KnowledgeCaseField();
+        new MetadataService.FieldMappingRow();
+        new MetadataService.EventParameterMap();
+        new MetadataService.ContentAssetVersion();
+        new MetadataService.AppBrand();
+        new MetadataService.ModeratedEntityField();
+        new MetadataService.ObjectMapping();
+        new MetadataService.TabLimitConfig();
+        new MetadataService.FieldMapping();
+        new MetadataService.ValueTranslation();
+        new MetadataService.StandardValueSet();
+        new MetadataService.FlowScreenRule();
+        new MetadataService.NavigationLinkSet();
+        new MetadataService.StandardValueSetTranslation();
+        new MetadataService.OpportunityListFieldsUnselectedSettings();
+        new MetadataService.GlobalValueSetTranslation();
+        new MetadataService.StandardValue();
+        new MetadataService.ContentAssetLink();
+        new MetadataService.ApexTestSuite();
+        new MetadataService.QuickActionSendEmailOptions();
+        new MetadataService.ValueSettings();
+        new MetadataService.FieldMappingField();
+        new MetadataService.CustomExperienceTabSet();
+        new MetadataService.KnowledgeSuggestedArticlesSettings();
+        Test.stopTest();
     }
 
     @IsTest
     private static void elfMissingGetRecordsTest() { // elf patch
+        Test.startTest();
         new MetadataService.ReadFlowResult().getRecords();
         new MetadataService.ReadWorkflowResult().getRecords();
         new MetadataService.ReadWorkflowRuleResult().getRecords();
@@ -1080,10 +1139,25 @@ private class MetadataServiceTest
         new MetadataService.ReadModerationRuleResult().getRecords();
         new MetadataService.ReadWaveApplicationResult().getRecords();
         new MetadataService.ReadWaveDatasetResult().getRecords();
+        new MetadataService.ReadChannelLayoutResult().getRecords();
+        new MetadataService.ReadContentAssetResult().getRecords();
+        new MetadataService.ReadApexTestSuiteResult().getRecords();
+        new MetadataService.ReadCustomValueResult().getRecords();
+        new MetadataService.ReadStandardValueResult().getRecords();
+        new MetadataService.ReadStandardValueSetResult().getRecords();
+        new MetadataService.ReadGlobalPicklistValueResult().getRecords();
+        new MetadataService.ReadGlobalValueSetResult().getRecords();
+        new MetadataService.ReadSearchSettingsResult().getRecords();
+        new MetadataService.ReadOrgPreferenceSettingsResult().getRecords();
+        new MetadataService.ReadWaveLensResult().getRecords();
+        new MetadataService.ReadWaveDataflowResult().getRecords();
+        new MetadataService.ReadWaveDashboardResult().getRecords();
+        Test.stopTest();
     }
 
     @IsTest
     private static void elfMissingGetResultTest() { // elf patch
+        Test.startTest();
         new MetadataService.readWorkflowRuleResponse_element().getResult();
         new MetadataService.readSamlSsoConfigResponse_element().getResult();
         new MetadataService.readCustomLabelResponse_element().getResult();
@@ -1234,8 +1308,16 @@ private class MetadataServiceTest
         new MetaDataService.readWaveLensResponse_element().getResult();
         new MetaDataService.readOrgPreferenceSettingsResponse_element().getResult();
         new MetaDataService.readSearchSettingsResponse_element().getResult();
-        new MetadataService.readGlobalPicklistResponse_element().getResult();
         new MetadataService.readGlobalPicklistValueResponse_element().getResult();
         new MetadataService.readPicklistValueResponse_element().getResult();     
+        new MetadataService.readContentAssetResponse_element().getResult();
+        new MetadataService.readChannelLayoutResponse_element().getResult();
+        new MetadataService.readApexTestSuiteResponse_element().getResult();
+        new MetadataService.readCustomValueResponse_element().getResult();
+        new MetadataService.readStandardValueResponse_element().getResult();
+        new MetadataService.readStandardValueSetResponse_element().getResult();
+        new MetadataService.readGlobalValueSetResponse_element().getResult();
+        new MetadataService.readWaveDashboardResponse_element().getResult();
+        Test.stopTest();
     }    
 }
