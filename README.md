@@ -12,7 +12,7 @@ v2.0
 
 [Producton](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t58000000KkOT) and [Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t58000000KkOT)
 
-- This release adds an exciting new **Lightning Component**. The **Dynamic Flow component** can be used to display Flows dynamically while tracking user navigation and record edits. Additionally it allows Flow logic to interact with **Lighnting Experience** features such as **Utlity Bar** and associated API's to drive **navigation** to other records, pages, display **notifications**, **popups** and more all **100% declarative of course!**
+- This release adds an exciting new **Lightning Component**. The **Dynamic Flow component** can be used to display Flows dynamically while tracking user navigation and record edits. Additionally it allows Flow logic to interact with **Lightning Experience** features such as **Utility Bar** and associated API's to drive **navigation** to other records, pages, display **notifications**, **popups** and more all **100% declarative of course!**
 
 v1.0
 ----
