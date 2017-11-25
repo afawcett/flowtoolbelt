@@ -9,8 +9,10 @@
 		<apex:outputPanel rendered="{!MetadataConnectionError==true}">
 			<apex:outputLink value="{!$Page.welcome}?showHeader=1">Return to the Welcome page</apex:outputLink>
 		</apex:outputPanel>
-        <apex:outputPanel rendered="{!ISNULL(AsyncResult)}">
-            <input type="button" onclick="generateZip();" value="{!IF(Deployed, 'Remove', 'Deploy')}" class="btn"/>
+        <apex:outputPanel rendered="{!MetadataConnectionError==false}">
+            <apex:outputPanel rendered="{!ISNULL(AsyncResult)}">
+                <input type="button" onclick="generateZip();" value="{!IF(Deployed, 'Remove', 'Deploy')}" class="btn"/>
+            </apex:outputPanel>
         </apex:outputPanel>
         <div>&nbsp;</div>
 		<apex:outputPanel rendered="{!MetadataConnectionError==false}">		
