@@ -71,6 +71,7 @@
         var eventToFire = null;
         var eventParams = {};
         var outputVar;	
+        var helper = this;
         for(var i = 0; i < outputVariables.length; i++) {
             outputVar = outputVariables[i];
             if(outputVar.name === 'flowtb_runFlow') {
@@ -94,12 +95,12 @@
                         utilityAPI.openUtility();
                     }
                 }).catch(function(error) {
-                    this.error(error);
+                    helper.error(error);
                 });
             } else if (outputVar.name === 'flowtb_utility_highlighted') {
                 utilityAPI.setUtilityHighlighted({ highlighted : outputVar.value });
             } else {
-                this.error('Unexpected variable ' + outputVar.name + ' returned from flow ' + flow);            
+                helper.error('Unexpected variable ' + outputVar.name + ' returned from flow ' + flow);            
             }              
         }
         if(eventToFire!=null) {
@@ -130,6 +131,8 @@
             }
             // Above logic applies only when the flow in context changes
             component.set('v.currentFlow', flow);
+            // Clear setup notification
+            component.set('v.setupNameRequired', null);
         }	
 	},
 	error : function(error) {

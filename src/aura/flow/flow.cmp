@@ -35,11 +35,19 @@
     <aura:attribute name="simpleRecord" type="Object"/>
     <aura:attribute name="metadataRecordName" type="String"/>   
     <aura:attribute name="metadataRecord" type="Object"/>
-    <aura:attribute name="metadataRecordError" type="String"/>   
+    <aura:attribute name="metadataRecordError" type="String"/> 
+    <aura:attribute name="setupNameRequired" type="String"/>  
     <aura:handler name="change" value="{!v.recordId}" action="{!c.onRecordIdChange}"/>
     
     <lightning:utilityBarAPI aura:id="utilitybar"/>
-    
+
+    <aura:if isTrue="{!v.setupNameRequired}">
+        <div class="slds-m-around_small slds-scoped-notification slds-media slds-media_center slds-scoped-notification_dark" role="status">
+            <div class="slds-media__figure"><lightning:icon iconName="utility:info" variant="inverse" size="small"/></div>
+            <div class="slds-media__body"><p>Configure this component through the <b>Dynamic Flow Component</b> Custom Metadata Type under Setup. Specify <b>{!v.setupNameRequired}</b> in the Developer Name field.</p></div>
+        </div>
+    </aura:if>
+
     <force:recordData aura:id="recordLoader"
         recordId="{!v.recordId}"
         layoutType="FULL"
@@ -54,7 +62,7 @@
         targetFields="DeveloperName, Label, Flow__c, IsAutoLaunched__c, AutoLaunchedOutputVariables__c"
         recordUpdated="{!c.onMetadataRecordUpdated}"
         readOnly="true"/>
-        
-    {!v.body}
+     
+    <div class="slds-m-around_small">{!v.body}</div>
     
 </aura:component>

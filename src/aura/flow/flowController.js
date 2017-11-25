@@ -54,6 +54,7 @@
         } else if(changeType == 'ERROR') {
             component.set('v.metadataRecordError', result.fullName ? result.message : result);
             helper.reset(component, null);            
+            component.set('v.setupNameRequired', component.get('v.record.apiName'));
         } else if(changeType == 'LOADED') {
             component.set('v.metadataRecordError', null);
             helper.reset(component, component.get('v.metadataRecord.flowtb__Flow__c'));    
