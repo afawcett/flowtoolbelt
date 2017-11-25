@@ -137,7 +137,7 @@
 	},
 	error : function(error) {
 	    var toastEvent = $A.get("e.force:showToast");
-        toastEvent.setParams({ "title" : "Error", "type" : "error", "message": error });
+        toastEvent.setParams({ "title" : "Dynamic Flow Component", "type" : "error", "message": error });
         toastEvent.fire();	    
 	}
 })
