@@ -7,6 +7,14 @@ Packages
 
 You can install via a managed package for ease of use and easy upgrades or you can install the code to help contribute and develop the tool.
 
+v2.1
+----
+
+[Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t58000000KkOY) and [Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t58000000KkOY)
+
+- Added additional info messaging when the component is not active
+- Resolved an error message popup when the component was used on a page and the flow invoked a utlity bar api
+
 v2.0
 ----
 
