@@ -47,6 +47,12 @@
             <div class="slds-media__body"><p>Configure this component through the <b>Dynamic Flow Component</b> Custom Metadata Type under Setup. Specify <b>{!v.setupNameRequired}</b> in the Dynamic Flow Component Name field.</p></div>
         </div>
     </aura:if>
+    <aura:if isTrue="{!v.recordId==null}">
+        <div class="slds-m-around_small slds-scoped-notification slds-media slds-media_center slds-scoped-notification_dark" role="status">
+            <div class="slds-media__figure"><lightning:icon iconName="utility:info" variant="inverse" size="small"/></div>
+            <div class="slds-media__body"><p>This <b>Dynamic Flow Component</b> is only activated when viewing records. It can be placed in the <b>Utility Bar</b> via <b>App Manager</b> or any <b>Record Page</b> via <b>Lightning App Builder</b>.</p></div>
+        </div>
+    </aura:if>
 
     <force:recordData aura:id="recordLoader"
         recordId="{!v.recordId}"
