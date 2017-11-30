@@ -98,7 +98,7 @@
                         utilityAPI.openUtility();
                     }
                 }).catch(function(error) {
-                    helper.error(error);
+                	console.log(error);
                 });
             } else if (outputVar.name === 'flowtb_utility_highlighted') {
                 utilityAPI.setUtilityHighlighted({ highlighted : outputVar.value });
