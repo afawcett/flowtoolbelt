@@ -3,7 +3,7 @@
 Read these blogs for more information:-
 
 - Read this [blog](https://andyinthecloud.com/2017/12/10/introducing-the-dynamic-flow-component/) for further documentation on the Dynamic Flow Component (DFC)
-- Read this [blog](https://andyinthecloud.com/2016/07/19/introducing-the-flow-factory/) for further documentation and background on the Flow Factory (dynamic creation of Flows in Apex).
+- Read this [blog](https://andyinthecloud.com/2016/07/19/introducing-the-flow-factory/) for further documentation on Dynamic creation of Flows in Apex (Flow Factory)
 
 Packages
 ========
