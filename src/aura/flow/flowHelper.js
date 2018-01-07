@@ -74,6 +74,9 @@
         var helper = this;
         for(var i = 0; i < outputVariables.length; i++) {
             outputVar = outputVariables[i];
+            if(outputVar.value == null) {
+            	continue;
+            }
             if(outputVar.name === 'flowtb_runFlow') {
                 flowToRun = outputVar.value;
             } else if(outputVar.name === 'flowtb_event') {
