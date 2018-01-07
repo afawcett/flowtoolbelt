@@ -6,6 +6,11 @@ Documentation and Discussion
 ============================
 
 - For discussion and feedback post [here](https://success.salesforce.com/_ui/core/chatter/groups/GroupProfilePage?g=0F93A000000DGmP) or raise well defined issues and ideas via the Issues feature [here](https://github.com/afawcett/flowtoolbelt/issues).
+- Dynamic Flow Component Video: [Basic Setup](https://www.youtube.com/watch?v=VHHGvzPRPqM)
+- Dynamic Flow Component Video: [Setting up Flows](https://www.youtube.com/watch?v=T8TzALvzmvA)
+- Dynamic Flow Component Video: [Record Update and Page Refresh](https://www.youtube.com/watch?v=tOhfYbGyr6U)
+- Dynamic Flow Component Video: [Record Notifications](https://www.youtube.com/watch?v=fxGs_lWsSIA)
+- Dynamic Flow Component Video: [Creating a Child Record and Navigating to it](https://www.youtube.com/watch?v=yY537m6X6Ok)
 - Read this [blog](https://andyinthecloud.com/2017/12/10/introducing-the-dynamic-flow-component/) and [wiki page](https://github.com/afawcett/flowtoolbelt/wiki) for further documentation on the Dynamic Flow Component (DFC)
 - Read this [blog](https://andyinthecloud.com/2016/07/19/introducing-the-flow-factory/) for further documentation on Dynamic creation of Flows in Apex (Flow Factory)
 
