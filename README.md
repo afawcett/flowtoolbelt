@@ -14,6 +14,15 @@ Packages
 
 You can install via a managed package for ease of use and easy upgrades or you can install the code to help contribute and develop the tool.
 
+v2.2
+----
+
+[Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t58000000KkVQ&isdtp=p1) and [Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t58000000KkVQ&isdtp=p1)
+
+- Fixed issue with flowtb_xxx output vars with no value
+- Removed the Is Autolaunched Flow fields from the custom metadata layout (physical fields still exist and work)
+- Autolaunched Flows no longer require Flow Factory tab usage
+
 v2.1
 ----
 
