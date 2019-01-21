@@ -2,6 +2,6 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <defaultLandingTab>Welcome</defaultLandingTab>
     <label>Flow Toolbelt</label>
-    <tab>Welcome</tab>
-    <tab>FlowFactory</tab>
+    <tabs>Welcome</tabs>
+    <tabs>FlowFactory</tabs>
 </CustomApplication>

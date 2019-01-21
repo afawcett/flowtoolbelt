@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IsAutoLaunched__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <inlineHelpText>In order to use Autolaunched Flows you must also complete setup via the Flow Factory tab</inlineHelpText>
+    <label>Is Autolaunched</label>
+    <type>Checkbox</type>
+</CustomField>
