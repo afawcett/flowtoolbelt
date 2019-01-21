@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <interviewLabel>Opportunity Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Flow</label>
+    <processType>Flow</processType>
+    <screens>
+        <name>Display</name>
+        <label>Display</label>
+        <locationX>167</locationX>
+        <locationY>108</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>DisplayText</name>
+            <fieldText>Name is {!flowtb_record.Name}</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Display</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>flowtb_record</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Opportunity</objectType>
+    </variables>
+</Flow>

@@ -26,41 +26,21 @@
 
 ({
     /**
-     * Runs the given Flow, using either the Apex API or the Flow component, 
-     *    regardless output param handling is routed eventually through handleFlowOutput method    
+     * Runs the given Flow
      **/
-    runFlow : function(component, flow, isAutoLaunched, flowOutputParamNames) {
+    runFlow : function(component, flow) {
         var helper = this;
-        // Auto launched flows are run via Apex since the Flow component does not return output variables, bug?
-        if(isAutoLaunched) {
-            var action = component.get("c.runFlow");
-            // Flow output parameters are a optional "hint" to the server logic which does not support enumeration of output params
-            action.setParams({ 
-                flow : flow,
-                flowOutputParamNames : flowOutputParamNames == null ? '' : flowOutputParamNames,  
-                record : component.get('v.simpleRecord') });  
-            action.setCallback(this, function(response) {
-                var state = response.getState();
-                if (state === "SUCCESS") {
-                    var outputVariables = response.getReturnValue();
-                    helper.handleFlowOutput(component, flow, outputVariables);
+        // Dynamically creating the lightning:flow component here since it appears not to all Flows to be restarted
+        $A.createComponent("lightning:flow", { 'onstatuschange' : component.getReference('c.onFlowStatusChange') }, 
+            function(newFlow, status, errorMessage) {
+                if (status === "SUCCESS") {
+                    component.set("v.body", [ newFlow ]);
+                    newFlow.startFlow(flow, [ 
+                        { name: 'flowtb_record', type : 'SObject', value : component.get('v.simpleRecord') } ] );
                 } else {
-                    helper.error(response.getError()[0].message);
-                }});
-            $A.enqueueAction(action);                
-        } else {
-            // Dynamically creating the lightning:flow component here since it appears not to all Flows to be restarted
-            $A.createComponent("lightning:flow", { 'onstatuschange' : component.getReference('c.onFlowStatusChange') }, 
-                function(newFlow, status, errorMessage) {
-                    if (status === "SUCCESS") {
-                        component.set("v.body", [ newFlow ]);
-                        newFlow.startFlow(flow, [ 
-                           { name: 'flowtb_record', type : 'SObject', value : component.get('v.simpleRecord') } ] );
-                    } else {
-                        helper.error('Failed to create lightning:flow component ' + errorMessage);
-                    }
-                });                     
-        }    
+                    helper.error('Failed to create lightning:flow component ' + errorMessage);
+                }
+            });                     
     },
     /**
      * Parses a collection of output variables from a flow and invokes various actions, runs another flow, lex event, utlity bar

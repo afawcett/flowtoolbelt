@@ -65,7 +65,7 @@
     <c:metadataRecordData aura:id="metadataRecordLoader"
         recordFullName="{!v.metadataRecordName}"
         targetRecord="{!v.metadataRecord}"
-        targetFields="DeveloperName, Label, Flow__c, IsAutoLaunched__c, AutoLaunchedOutputVariables__c"
+        targetFields="DeveloperName, Label, Flow__c"
         recordUpdated="{!c.onMetadataRecordUpdated}"
         readOnly="true"/>
      

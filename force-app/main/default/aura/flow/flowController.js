@@ -56,25 +56,20 @@
             helper.reset(component, null);            
             component.set('v.setupNameRequired', component.get('v.record.apiName'));
         } else if(changeType == 'LOADED') {
+            var ns = component.getType().split(':')[0];
+            var flowNameFieldName = ns!='c' ? 'v.metadataRecord.' + ns + '__Flow__c' : 'v.metadataRecord.Flow__c';
             component.set('v.metadataRecordError', null);
-            helper.reset(component, component.get('v.metadataRecord.flowtb__Flow__c'));    
-            // Use of the IsAutoLaunched and AutoLaunchedOutputVariables fields relates to the workaround in runFlow        
-            helper.runFlow(
-                component,
-                component.get('v.metadataRecord.flowtb__Flow__c'), 
-                component.get('v.metadataRecord.flowtb__IsAutoLaunched__c'),
-                component.get('v.metadataRecord.flowtb__AutoLaunchedOutputVariables__c'));
+            helper.reset(component, component.get(flowNameFieldName));    
+            helper.runFlow(component,component.get(flowNameFieldName));
         }
         // Lets the reset method in the helper know its safe to reset the component if called
         component.set('v.loaded', true);    
     },
     /**
-     * Fired when the Flow component completes a Flow (the user clicks Finish)
+     * Fired when the Flow component completes a Flow
      **/
     onFlowStatusChange : function(component, event, helper) {
         if(event.getParam("status") === "FINISHED" || event.getParam("status") == 'FINISHED_SCREEN') {
-            // Per the docs FINISHED_SCREEN relates to AutoLaunched flows, only issue is outputVariables is always null
-            //  hence AutoLaunched flows are presently never routed through the Flow component, see notes in runFlow
             var outputVariables = event.getParam("outputVariables");
             if(outputVariables!=null) {
                 helper.handleFlowOutput(component, event.getParam('flowTitle'), outputVariables);
