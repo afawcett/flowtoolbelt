@@ -10,4 +10,8 @@
     </applicationVisibilities>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Flow Toolbelt Test</label>
+    <tabSettings>
+        <tab>Widget__c</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
 </PermissionSet>

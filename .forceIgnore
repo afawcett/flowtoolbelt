@@ -1,1 +1,3 @@
 AppSwitcher.appMenu
+force-app/main/default/profiles
+force-app-test/main/default/profiles

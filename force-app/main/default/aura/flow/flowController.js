@@ -40,7 +40,7 @@
      **/
     onRecordUpdated : function(component, event, helper) {
         // The loaded record is passed at a later stage to the flow, for now we are interested in the API name to lookup config
-        component.set('v.metadataRecordName', 'DynamicFlowComponent.' + component.get('v.record.apiName'));
+        component.set('v.metadataRecordName', 'DynamicFlowComponent.' + component.get('v.record.apiName').replace('__c', '_custom')); 
         component.find("metadataRecordLoader").reloadRecord();
     },
     /**
@@ -52,9 +52,10 @@
         if(changeType == 'CHANGED') {
             component.set('v.metadataRecordError', null);
         } else if(changeType == 'ERROR') {
+            var apiName = component.get('v.record.apiName');
             component.set('v.metadataRecordError', result.fullName ? result.message : result);
             helper.reset(component, null);            
-            component.set('v.setupNameRequired', component.get('v.record.apiName'));
+            component.set('v.setupNameRequired', apiName.replace('__c', '_custom'));
         } else if(changeType == 'LOADED') {
             var ns = component.getType().split(':')[0];
             var flowNameFieldName = ns!='c' ? 'v.metadataRecord.' + ns + '__Flow__c' : 'v.metadataRecord.Flow__c';
