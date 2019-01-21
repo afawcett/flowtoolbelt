@@ -40,7 +40,11 @@
      **/
     onRecordUpdated : function(component, event, helper) {
         // The loaded record is passed at a later stage to the flow, for now we are interested in the API name to lookup config
-        component.set('v.metadataRecordName', 'DynamicFlowComponent.' + component.get('v.record.apiName').replace('__c', '_custom')); 
+        var apiName = component.get('v.record.apiName');
+        if(apiName!=null) {
+            apiName = apiName.replace('__c', '_custom');
+        }
+        component.set('v.metadataRecordName', 'DynamicFlowComponent.' + apiName); 
         component.find("metadataRecordLoader").reloadRecord();
     },
     /**
