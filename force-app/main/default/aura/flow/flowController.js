@@ -57,9 +57,12 @@
             component.set('v.metadataRecordError', null);
         } else if(changeType == 'ERROR') {
             var apiName = component.get('v.record.apiName');
+            if(apiName!=null) {
+                apiName = apiName.replace('__c', '_custom');
+            }    
             component.set('v.metadataRecordError', result.fullName ? result.message : result);
             helper.reset(component, null);            
-            component.set('v.setupNameRequired', apiName.replace('__c', '_custom'));
+            component.set('v.setupNameRequired', apiName);
         } else if(changeType == 'LOADED') {
             var ns = component.getType().split(':')[0];
             var flowNameFieldName = ns!='c' ? 'v.metadataRecord.' + ns + '__Flow__c' : 'v.metadataRecord.Flow__c';
