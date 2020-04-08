@@ -22,7 +22,7 @@ You can install via a managed package for ease of use and easy upgrades or you c
 v2.5
 ----
 
-[Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4I000000gNrw&isdtp=p1) and [Sandbox](https://tesst.salesforce.com/packaging/installPackage.apexp?p0=04t4I000000gNrw&isdtp=p1)
+[Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4I000000gNrw&isdtp=p1) and [Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04t4I000000gNrw&isdtp=p1)
 - Fixed issue with Custom Object support, for Widget__c, use Widget_custom as the Metadata name when configuring
 - Migrated the repo to SFDX format and included test metadata
 - Autolaunch and Output params fields are no longer required when configuring custom metadata please ignore
